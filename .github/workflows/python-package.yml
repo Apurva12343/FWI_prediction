@@ -32,6 +32,11 @@ jobs:
           export FLASK_APP=application.py  # Set the Flask app to run
           export FLASK_ENV=development  # Set the Flask environment to development
           flask run --host=0.0.0.0 --port=5000 &  # Run the Flask app in the background
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+              name: web-build-artifact  # the name of the artifact
+              path: build/web
   deploy:
     needs: build  # wait for the "build" job to get done before executing this "deploy" job
 
