@@ -32,11 +32,6 @@ jobs:
           export FLASK_APP=application.py  # Set the Flask app to run
           export FLASK_ENV=development  # Set the Flask environment to development
           flask run --host=0.0.0.0 --port=5000 &  # Run the Flask app in the background
-      - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-              name: web-build-artifact  # the name of the artifact
-              path: build/web
   deploy:
     needs: build  # wait for the "build" job to get done before executing this "deploy" job
 
@@ -51,14 +46,3 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-      
-    steps:
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        
-      - name: Deploy to GitHub Pages 🚀
-        if: github.event_name == 'push'  # deploy only on push
-        id: deployment
-        uses: actions/deploy-pages@v4.0.5
-        with:
-          artifact_name: web-build-artifact
