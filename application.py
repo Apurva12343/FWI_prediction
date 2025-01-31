@@ -16,7 +16,7 @@ standard_scaler=pickle.load(open('models/scaler_Ridge_lasso_elasticnet.pkl','rb'
 def index():
     return render_template('index.html')
 
-@app.route('/predict_datapoint',methods=['GET','POST'])
+@app.route('/predictdata',methods=['GET','POST'])
 def predict_datapoint():
     if request.method=='POST':
         Temperature=float(request.form.get('Temperature'))
